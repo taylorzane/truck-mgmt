@@ -1,4 +1,4 @@
 class Contact < ActiveRecord::Base
-  
-  validates_presence_of :name, :pass
+  attribute :name, :validate => true
+  attribute :pass, :validate => true
 end

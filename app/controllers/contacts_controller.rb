@@ -1,4 +1,8 @@
 class ContactsController < ApplicationController
+  def new
+    @contact = Contact.new
+  end
+
   def create
     @contact = Contact.new(contact_params)
     @contact.request = request
@@ -14,7 +18,7 @@ class ContactsController < ApplicationController
   private
   ## Strong Parameters 
   def contact_params
-    params.require(:user).permit(:name, :pass)
+    params.require(:contact).permit(:name, :pass)
   end
 
 end
