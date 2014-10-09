@@ -58,6 +58,10 @@ root 'welcome#index'
 
 get 'input', to:  'input#input'
 
-get 'contacts', to: 'contacts#new'#
+get 'contacts', to: 'contacts#show'#
+
+get 'contacts/new', to: 'contacts#new'#
+
+post 'contacts', to: 'contacts#create'
 
 end

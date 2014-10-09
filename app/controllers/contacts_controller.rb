@@ -5,7 +5,7 @@ class ContactsController < ApplicationController
 
   def create
     @contact = Contact.new(contact_params)
-    @contact.request = request
+    #@contact.request = request
     if @contact.save
       flash.now[:notice] = 'User was created successfully'
     else
@@ -14,6 +14,9 @@ class ContactsController < ApplicationController
     end
   end
 
+  def show
+    @contact = Contact.all
+  end
 
   private
   ## Strong Parameters 
