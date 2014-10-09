@@ -1,8 +1,8 @@
-<h2>All Contacts</h2>
+<h2>Single Contact</h2>
 
-<p>List of contacts:</p>
+<p>Contact information:</p>
 <ul>
-	<% @contact.each do |t| %>
-		<li><%=t.name%></li>
-	<%end%>
+		<li>Name: <%=@contact.name%></li>
+		<li>Username: <%=@contact.username%></li>
+		<li>Password: <%=@contact.pass%></li>
 </ul>

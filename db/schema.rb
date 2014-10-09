@@ -17,8 +17,9 @@ ActiveRecord::Schema.define(version: 20141009173929) do
   enable_extension "plpgsql"
 
   create_table "contacts", force: true do |t|
-    t.string   "name"
-    t.string   "pass"
+    t.string   "name",       null: false
+    t.string   "pass",       null: false
+    t.string   "username",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
