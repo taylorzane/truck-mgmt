@@ -10,7 +10,7 @@ class ContactsController < ApplicationController
       flash.now[:notice] = 'User was created successfully'
     else
       flash.now[:error] = 'Cannot create user.'
-      render action: 'new'
+      render action: 'show'
     end
   end
 
