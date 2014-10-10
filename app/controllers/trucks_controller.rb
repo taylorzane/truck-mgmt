@@ -47,6 +47,8 @@ class TrucksController < ApplicationController
   def update
     @truck = Truck.update(@truck.id, truck_params)
 
+    trailer = Trailer.find(params[:truck][:trailer_id])
+    @truck.trailer = trailer
     if @truck.save
       redirect_to(session.delete(:return_to), notice: 'Truck was updated successfully')
       #redirect_to(drivers_path, 
@@ -65,7 +67,7 @@ class TrucksController < ApplicationController
   private
   ## Strong Parameters 
   def truck_params
-    params.require(:truck).permit(:nickname, :licnum)
+    params.require(:truck).permit(:nickname, :licnum, :trailer_id)
   end
 
 end

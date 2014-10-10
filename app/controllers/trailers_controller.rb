@@ -47,6 +47,9 @@ class TrailersController < ApplicationController
   def update
     @trailer = Trailer.update(@trailer.id, trailer_params)
 
+    truck = Truck.find(params[:trailer][:truck_id])
+    truck.trailer = @trailer
+    @trailer.truck = truck
     if @trailer.save
       redirect_to(session.delete(:return_to), notice: 'Trailer was updated successfully')
       #redirect_to(drivers_path, 

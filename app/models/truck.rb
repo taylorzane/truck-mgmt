@@ -3,6 +3,7 @@ class Truck < ActiveRecord::Base
 
 	has_many :drivers
 	has_one :trailer
+	accepts_nested_attributes_for :trailer
 
 	def select_label
 		if self.nickname != (nil or '')

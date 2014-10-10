@@ -16,10 +16,11 @@
   </head>
 
   <body>
+  <div class="sticky">
   <nav class="top-bar" data-topbar data-options="is_hover: false" role="navigation">
   <ul class="title-area">
     <li class="name">
-      <h1><a href="/">Trucking Management</a></h1>
+      <h1><a tabindex="-1" href="/">Trucking Management</a></h1>
     </li>
      <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
     <!--<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>-->
@@ -56,12 +57,12 @@
           <li class="has-dropdown">
       <%end%>
 
-      <a href="/drivers">Drivers</a>
+      <a tabindex="-1" href="/drivers">Drivers</a>
       
 
       <ul class="dropdown">
-      <li><a href="/drivers">All Drivers</a></li>
-      <li><a href="/drivers/new">New Driver</a></li>
+      <li><a tabindex="-1" href="/drivers">All Drivers</a></li>
+      <li><a tabindex="-1" href="/drivers/new">New Driver</a></li>
       </ul>
       </li>
 
@@ -70,10 +71,10 @@
       <%else%>
           <li class="has-dropdown">
       <%end%>
-      <a href="/trucks">Trucks</a>
+      <a tabindex="-1" href="/trucks">Trucks</a>
       <ul class="dropdown">
-      <li><a href="/trucks">All Trucks</a></li>
-      <li><a href="/trucks/new">New Truck</a></li>
+      <li><a tabindex="-1" href="/trucks">All Trucks</a></li>
+      <li><a tabindex="-1" href="/trucks/new">New Truck</a></li>
       </ul>
       </li>
 
@@ -82,10 +83,10 @@
       <%else%>
           <li class="has-dropdown">
       <%end%>
-      <a href="/trailers">Trailers</a>
+      <a tabindex="-1" href="/trailers">Trailers</a>
       <ul class="dropdown">
-      <li><a href="/trailers">All Trailers</a></li>
-      <li><a href="/trailers/new">New Trailer</a></li>
+      <li><a tabindex="-1" href="/trailers">All Trailers</a></li>
+      <li><a tabindex="-1" href="/trailers/new">New Trailer</a></li>
       </ul>
       </li>
 
@@ -94,10 +95,10 @@
       <%else%>
           <li class="has-dropdown">
       <%end%>
-      <a href="/loads">Loads</a>
+      <a tabindex="-1" href="/loads">Loads</a>
       <ul class="dropdown">
-      <li><a href="/loads">All Loads</a></li>
-      <li><a href="/loads/new">New Load</a></li>
+      <li><a tabindex="-1" href="/loads">All Loads</a></li>
+      <li><a tabindex="-1" href="/loads/new">New Load</a></li>
       </ul>
       </li>
 
@@ -106,15 +107,16 @@
       <%else%>
           <li class="has-dropdown">
       <%end%>
-      <a href="/shippers">Shippers</a>
+      <a tabindex="-1" href="/shippers">Shippers</a>
       <ul class="dropdown">
-      <li><a href="/shippers">All Shippers</a></li>
-      <li><a href="/shippers/new">New Shipper</a></li>
+      <li><a tabindex="-1" href="/shippers">All Shippers</a></li>
+      <li><a tabindex="-1" href="/shippers/new">New Shipper</a></li>
       </ul>
       </li>
     </ul>
   </section>
 </nav>
+</div>
 
 <div class="row" style="background-color:#ccc">
   <% flash.each do |name, msg| %>
