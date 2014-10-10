@@ -11,9 +11,8 @@
 	  	<%= f.input :nickname, label: 'Nickname', placeholder: 'Optional'%>
 	  	<%= f.input :length, label: 'Length' %>
 	  	<%= f.input :width, label: 'Width' %>
-	  	<%= f.input :height, label: 'Height' %>
-	  	<%= f.association :truck, label_method: :select_label%>
-	  	<%= f.collection_select :truck_id, Truck.all, :id, :nickname, label: "trailer_id" %>
+	  	<%= f.input :height, label: 'Height' %> 
+	  	<%= f.input :truck_id,:collection => Truck.all,:label_method => :select_label,:value_method => :id,:label => "Truck" %>
 			<%#= f.association :drivers %>
 			<%#= f.association :trailer %>
 

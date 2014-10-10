@@ -9,7 +9,7 @@
 	<%= simple_form_for @truck do |f| %>
 			<%= f.input :licnum, label: 'License #' %>
 	  	<%= f.input :nickname, label: 'Nickname', placeholder: 'Optional'%>
-			<%= f.collection_select :trailer_id, Trailer.all, :id, :nickname, label: "trailer_id" %>
+			<%= f.input :trailer_id,:collection => Trailer.all,:label_method => :select_label,:value_method => :id,:label => "Trailer" %>
 			<%= f.button :submit, class: 'button small' %>
 	<% end %>
 	</div>

@@ -36,7 +36,8 @@ class TrucksController < ApplicationController
 
   def create
     @truck = Truck.new(truck_params)
-
+    trailer = Trailer.find(params[:truck][:trailer_id])
+    @truck.trailer = trailer
     if @truck.save
       redirect_to(trucks_path, notice: 'Truck was created successfully')
     else
