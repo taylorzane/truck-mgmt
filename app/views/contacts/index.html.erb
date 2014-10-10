@@ -1,37 +1,33 @@
 <% content_for :title do %>
 All Contacts
 <% end %>
+	<h2>All Contacts</h2>
+		<table>
+			<thead>
+			<tr>
+				<th>Username</th>
+				<th>Name</th>
+				<th>Changes</th>
+			</tr>
+			</thead>
+			
+			<tbody>
+			<% @contact.each do |c| %>
+			
+			<tr>
+				<td><%= link_to c.username, c %></td>
+				<td><%= c.name%></td>
+				<td><%= link_to "Edit", edit_contact_path(c), class: 'button small' %>    <%= link_to "Delete", c, method: :delete, class: 'button small'  %></td>
+			</tr>
+			
+			<%end%>
+			</tbody>
+			
 
-<h2>All Contacts</h2>
+		</table>
+		
+		<% if @contact.size == 0 %>
+				<em>No Contacts Found</em>
+		<%end%>
 
-
-<div>
-<p>List of contacts:</p>
-
-<table>
-
-	<tr>
-		<th>Username</th>
-		<th>Name</th>
-		<th>Changes</th>
-	</tr>
-
-	<% @contact.each do |c| %>
-	
-	<tr>
-		<td><%= link_to c.username, c %></td>
-		<td><%= c.name%></td>
-		<td><%= link_to "Edit", edit_contact_path(c) %>    <%= link_to "Delete", c, method: :delete %></td>
-	</tr>
-	
-	<%end%>
-
-	
-
-</table>
-<% if @contact.size == 0 %>
-		<em>No Contacts Found</em>
-	<%end%>
-
-
-</div>
+	</div>

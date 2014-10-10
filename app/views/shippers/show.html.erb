@@ -1,0 +1,35 @@
+<% content_for :title do %>
+<%=@title%>
+<% end %>
+
+<h2><%=@title%></h2>
+
+<table>
+	<thead>
+		<tr>
+				<th>Nickname</th>
+				<th>Loads</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+		<td><%= @shipper.name%></td>
+		<td>
+				<% if @shipper.loads != [] %>
+						<% @shipper.loads.each do |t|%>
+								<%= link_to t.nickname, load_path(t)%><br />
+						<%end%>
+				<%else%>
+						<%= 'No Loads' %>
+				<%end%>
+		</td>	
+		
+		</tr>	
+	</tbody>
+	
+
+
+</table>
+<%= link_to "Edit Shipper", edit_shipper_path(@shipper), class: 'button small' %>
+<a href="/shippers" class="button small">All Shippers</a>

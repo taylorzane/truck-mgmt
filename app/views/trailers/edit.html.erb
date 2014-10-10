@@ -1,0 +1,21 @@
+<% content_for :title do %>
+<%=@title%>
+<% end %>
+
+	<h2><%=@title%></h2>
+	
+
+	<div class = 'large-6 columns'>
+	<%= simple_form_for @trailer do |f| %>
+			<%= f.input :licnum, label: 'License #' %>
+	  	<%= f.input :nickname, label: 'Nickname', placeholder: 'Optional'%>
+	  	<%= f.input :length, label: 'Length' %>
+	  	<%= f.input :width, label: 'Width' %>
+	  	<%= f.input :height, label: 'Height' %>
+	  	<%= f.association :truck, label_method: :select_label%>
+			<%#= f.association :drivers %>
+			<%#= f.association :trailer %>
+
+	  	<%= f.button :submit, class: 'button small' %>
+	<% end %>
+	</div>

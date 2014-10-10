@@ -1,0 +1,57 @@
+<% content_for :title do %>
+<%=@title%>
+<% end %>
+
+<h2><%=@title%></h2>
+
+<table>
+	<thead>
+		<tr>
+			<th>License #</th>
+				<th>Nickname</th>
+				<th>Dimensions (LxWxH)</th>
+				<th>Truck</th>
+				<th>Loads</th>
+				
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+		<td><%= @trailer.licnum%></td>
+		<td>
+			<% if @trailer.nickname != (nil or '') %>
+					<%= @trailer.nickname%>
+			<%else%>
+				<%= 'No Nickname' %>
+			<%end%>
+		</td>
+		<td><%=@trailer.length%> x <%=@trailer.width%> x <%=@trailer.height%></td>
+		<td>
+			<% if @trailer.truck != nil %>
+						<%if @trailer.truck.nickname != (nil or '')%>
+      				<%=link_to @trailer.truck.licnum, truck_path(@trailer.truck)%>  <%=' (' + @trailer.truck.nickname+')'%>
+    				<%else%>
+      				<%=link_to @trailer.truck.licnum, truck_path(@trailer.truck)%>
+    				<%end%>
+				<%else%>
+						<%= 'No Truck' %>
+				<%end%>
+		</td>
+		<td>
+		<% if @trailer.loads != [] %>
+						<% @trailer.loads.each do |t|%>
+								<%= link_to t.nickname, load_path(t)%><br />
+						<%end%>
+				<%else%>
+						<%= 'No Loads' %>
+				<%end%>
+		</td>
+		</tr>	
+	</tbody>
+	
+
+
+</table>
+<%= link_to "Edit Trailer", edit_trailer_path(@trailer), class: 'button small' %>
+<a href="/trailers" class="button small">All Trailers</a>

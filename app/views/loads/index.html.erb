@@ -1,0 +1,61 @@
+<% content_for :title do %>
+<%=@title%>
+<% end %>
+	<h2><%=@title%></h2>
+		<table>
+			<thead>
+			<tr>
+				<th>Nickname</th>
+				<th>Dimensions (LxWxH)</th>
+				<th>Weight</th>
+				<th>Trailer</th>
+				<th>Shipper</th>
+				<th>Modify</th>
+			</tr>
+			</thead>
+			
+			<tbody>
+			<% @load.each do |c| %>
+			
+			<tr>
+				<td><%= link_to c.nickname, c%></td>
+				<td><%=c.length%> x <%=c.width%> x <%=c.height%></td>
+				<td><%=c.weight%></td>
+				<td>
+				<% if c.trailer != nil %>
+						<%if c.trailer.nickname != (nil or '')%>
+      				<%=link_to c.trailer.licnum, trailer_path(c.trailer)%>  <%=' (' + c.trailer.nickname+')'%>
+    				<%else%>
+      				<%=link_to c.trailer.licnum, trailer_path(c.trailer)%>
+    				<%end%>
+				<%else%>
+						<%= 'No Trailer' %>
+				<%end%>
+				</td>
+				<td>
+					<% if c.shipper != nil %>
+      				<%=link_to c.shipper.name, shipper_path(c.shipper)%>
+					<%else%>
+						<%= 'No Shipper' %>
+					<%end%>
+				</td>
+				</td>
+				<td>
+						<%= link_to "Edit", edit_load_path(c), class: 'button small' %>
+						<%= link_to "Delete", c, method: :delete, class: 'button small'  %>
+				</td>
+			</tr>
+			
+			<%end%>
+			</tbody>
+			
+
+		</table>
+		
+		<% if @load.size == 0 %>
+				<em>No Loads Found</em><br /><br />
+		<%end%>
+
+		<a href="/loads/new" class="button small">New Load</a>
+
+	</div>

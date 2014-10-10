@@ -56,10 +56,14 @@ Rails.application.routes.draw do
 
 root 'welcome#index'
 
-get 'input', to:  'input#input'
-
 resources :contacts
 
+#Truck Management Resource Routes
+resources :drivers
+resources :trucks
+resources :trailers
+resources :loads
+resources :shippers
 
 
 end

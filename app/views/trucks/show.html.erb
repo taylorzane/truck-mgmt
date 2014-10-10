@@ -1,0 +1,53 @@
+<% content_for :title do %>
+<%=@title%>
+<% end %>
+
+<h2><%=@title%></h2>
+
+<table>
+	<thead>
+		<tr>
+			<th>License #</th>
+				<th>Nickname</th>
+				<th>Drivers</th>
+				<th>Trailer</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+		<td><%=@truck.licnum%></td>
+				<td><% if @truck.nickname != (nil or '') %>
+						<%= @truck.nickname%>
+				<%else%>
+					<%= 'No Nickname' %>
+				<%end%></td>
+				<td>
+						<% if @truck.drivers != [] %>
+							<% @truck.drivers.each do |t|%>
+								<%= link_to t.fname, driver_path(t)%>
+							<%end%>
+						<%else%>
+							<%= 'No Drivers' %>
+						<%end%>
+				</td>
+				
+				<td>
+					<% if @truck.trailer != nil %>
+						<%if @truck.trailer.nickname != (nil or '')%>
+      				<%=link_to @truck.trailer.licnum, trailer_path(@truck.trailer)%>  <%=' (' + @truck.trailer.nickname+')'%>
+    				<%else%>
+      				<%=link_to @truck.trailer.licnum, trailer_path(@truck.trailer)%>
+    				<%end%>
+					<%else%>
+						<%= 'No Trailer' %>
+					<%end%>
+				</td>
+		</tr>	
+	</tbody>
+	
+
+
+</table>
+<%= link_to "Edit Truck", edit_truck_path(@truck), class: 'button small' %>
+<a href="/trucks" class="button small">All Trucks</a>

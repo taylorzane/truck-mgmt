@@ -1,0 +1,22 @@
+<% content_for :title do %>
+<%=@title%>
+<% end %>
+
+	<h2><%=@title%></h2>
+	
+
+	<div class = 'large-6 columns'>
+	<%= simple_form_for @load do |f| %>
+			<%= f.input :nickname, label: 'Nickname'%>
+	  	
+	  	<%= f.input :length, label: 'Length' %>
+	  	<%= f.input :width, label: 'Width' %>
+	  	<%= f.input :height, label: 'Height' %>
+	  	<%= f.input :weight, label: 'Weight' %>
+
+	  	<%= f.association :trailer, label_method: :select_label%>
+	  	<%= f.association :shipper%>
+			
+	  	<%= f.button :submit, class: 'button small' %>
+	<% end %>
+	</div>

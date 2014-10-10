@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141009173929) do
+ActiveRecord::Schema.define(version: 20141010173258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,14 +24,63 @@ ActiveRecord::Schema.define(version: 20141009173929) do
     t.datetime "updated_at"
   end
 
+  create_table "drivers", force: true do |t|
+    t.string   "fname"
+    t.string   "lname"
+    t.string   "licnum"
+    t.date     "dob"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "truck_id"
+  end
+
   create_table "inputs", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  create_table "loads", force: true do |t|
+    t.integer  "length"
+    t.integer  "width"
+    t.integer  "height"
+    t.integer  "weight"
+    t.string   "nickname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "trailer_id"
+    t.integer  "shipper_id"
+  end
+
+  create_table "shippers", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "load_id"
+  end
+
   create_table "testenvs", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "trailers", force: true do |t|
+    t.string   "licnum"
+    t.string   "nickname"
+    t.integer  "length"
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "truck_id"
+    t.integer  "load_id"
+  end
+
+  create_table "trucks", force: true do |t|
+    t.string   "licnum"
+    t.string   "nickname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "trailer_id"
   end
 
 end

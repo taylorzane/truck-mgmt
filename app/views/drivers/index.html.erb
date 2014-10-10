@@ -1,0 +1,59 @@
+<% content_for :title do %>
+<%=@title%>
+<% end %>
+	<h2><%=@title%></h2>
+		<table>
+			<thead>
+			<tr>
+				
+				<th>License #</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				
+				<th>DOB</th>
+				<th>Truck</th>
+				<th>Modify</th>
+			</tr>
+			</thead>
+			
+			<tbody>
+			<% @driver.each do |c| %>
+			
+			<tr>
+				<td><%= link_to c.licnum, c%></td>
+				<td><%= c.fname%></td>
+				<td><%= c.lname%></td>
+				
+				<td><%= c.dob%></td>
+				<td>
+						<% if c.truck != nil %>
+							<%=link_to c.truck.licnum, truck_path(c.truck_id)%> 
+							<% if c.truck.nickname != (nil or '') %>
+								(<%= c.truck.nickname%>)
+								<%else%>
+									<%= '' %>
+						<%end%>
+						<%else%>
+							<%= 'Not Assigned' %>
+						<%end%>
+							
+				</td>
+				<td>
+						<%= link_to "Edit", edit_driver_path(c), class: 'button small' %>
+						<%= link_to "Delete", c, method: :delete, class: 'button small'  %>
+				</td>
+			</tr>
+			
+			<%end%>
+			</tbody>
+			
+
+		</table>
+		
+		<% if @driver.size == 0 %>
+				<em>No Drivers Found</em><br /><br />
+		<%end%>
+
+		<a href="/drivers/new" class="button small">New Driver</a>
+
+	</div>

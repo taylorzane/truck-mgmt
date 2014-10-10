@@ -1,0 +1,17 @@
+<% content_for :title do %>
+<%=@title%>
+<% end %>
+	<h2><%=@title%></h2>
+	
+
+	<div class = 'large-6 columns'>
+	<%= simple_form_for @driver do |f| %>
+			<%= f.input :licnum, label: 'License #' %>
+	  	<%= f.input :fname, label: 'First Name'%>
+	  	<%= f.input :lname, label: 'Last Name'%>
+			
+			<%= f.input :dob, as: :string, label: 'Date of Birth'%>
+			<%= f.association :truck, label_method: :select_label%>
+	  	<%= f.button :submit, class: 'button small' %>
+	<% end %>
+	</div>

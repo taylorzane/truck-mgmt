@@ -1,0 +1,47 @@
+<% content_for :title do %>
+<%=@title%>
+<% end %>
+	<h2><%=@title%></h2>
+
+
+<table>
+	<thead>
+		<tr>
+			<th>License #</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			
+			<th>DOB</th>
+			<th>Truck</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+		<td><%= @driver.licnum%></td>
+			<td><%=@driver.fname%></td>
+				<td><%= @driver.lname%></td>
+				
+				<td><%= @driver.dob%></td>
+				<td>
+						<% if @driver.truck != nil %>
+							<%= link_to @driver.truck.licnum, truck_path(@driver.truck_id)%>
+							<% if @driver.truck.nickname != (nil or '') %>
+								(<%= @driver.truck.nickname%>)
+								<%else%>
+									<%= '' %>
+						<%end%>
+						<%else%>
+							<%= link_to 'Assign', edit_driver_path %>
+						<%end%>
+							
+				</td>
+		</tr>	
+	</tbody>
+	
+
+
+</table>
+
+<%= link_to "Edit Driver", edit_driver_path(@driver), class: 'button small' %>
+<a href="/drivers" class="button small">All Drivers</a>

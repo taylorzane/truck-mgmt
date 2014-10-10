@@ -1,0 +1,46 @@
+<% content_for :title do %>
+<%=@title%>
+<% end %>
+	<h2><%=@title%></h2>
+		<table>
+			<thead>
+			<tr>
+				<th>Name</th>
+				<th>Loads</th>
+				<th>Modify</th>
+			</tr>
+			</thead>
+			
+			<tbody>
+			<% @shipper.each do |c| %>
+			
+			<tr>
+				<td><%= link_to c.name, c%></td>
+				<td>
+					<% if c.loads != [] %>
+						<% c.loads.each do |t|%>
+								<%= link_to t.nickname, load_path(t)%><br />
+						<%end%>
+				<%else%>
+						<%= 'No Loads' %>
+				<%end%>
+				</td>
+				<td>
+						<%= link_to "Edit", edit_shipper_path(c), class: 'button small' %>
+						<%= link_to "Delete", c, method: :delete, class: 'button small'  %>
+				</td>
+			</tr>
+			
+			<%end%>
+			</tbody>
+			
+
+		</table>
+		
+		<% if @shipper.size == 0 %>
+				<em>No Shippers Found</em><br /><br />
+		<%end%>
+
+		<a href="/shippers/new" class="button small">New Shipper</a>
+
+	</div>

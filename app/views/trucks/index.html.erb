@@ -1,0 +1,67 @@
+<% content_for :title do %>
+<%=@title%>
+<% end %>
+	<h2><%=@title%></h2>
+		<table>
+			<thead>
+			<tr>
+				
+				<th>License #</th>
+				<th>Nickname</th>
+				<th>Drivers</th>
+				<th>Trailer</th>
+				<th>Modify</th>
+			</tr>
+			</thead>
+			
+			<tbody>
+			<% @truck.each do |c| %>
+			
+			<tr>
+				<td><%= link_to c.licnum, c%></td>
+				<td>
+				<% if c.nickname != (nil or '') %>
+						<%= c.nickname%>
+				<%else%>
+					<%= 'No Nickname' %>
+				<%end%>
+				</td>
+				<td>
+				<% if c.drivers != [] %>
+						<% c.drivers.each do |t|%>
+								<%= link_to t.fname, driver_path(t)%><br />
+						<%end%>
+				<%else%>
+						<%= 'No Drivers' %>
+				<%end%>
+				</td>
+				<td>
+					<% if c.trailer != nil %>
+						<%if c.trailer.nickname != (nil or '')%>
+      				<%=link_to c.trailer.licnum, trailer_path(c.trailer)%>  <%=' (' + c.trailer.nickname+')'%>
+    				<%else%>
+      				<%=link_to c.trailer.licnum, trailer_path(c.trailer)%>
+    				<%end%>
+					<%else%>
+						<%= 'No Trailer' %>
+					<%end%>
+				</td>
+				<td>
+						<%= link_to "Edit", edit_truck_path(c), class: 'button small' %>
+						<%= link_to "Delete", c, method: :delete, class: 'button small'  %>
+				</td>
+			</tr>
+			
+			<%end%>
+			</tbody>
+			
+
+		</table>
+		
+		<% if @truck.size == 0 %>
+				<em>No Trucks Found</em><br /><br />
+		<%end%>
+
+		<a href="/trucks/new" class="button small">New Truck</a>
+
+	</div>

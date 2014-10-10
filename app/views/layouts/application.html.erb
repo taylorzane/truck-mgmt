@@ -9,10 +9,14 @@
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
+
+
+
+
   </head>
 
   <body>
-    <nav class="top-bar" data-topbar role="navigation">
+  <nav class="top-bar" data-topbar data-options="is_hover: false" role="navigation">
   <ul class="title-area">
     <li class="name">
       <h1><a href="/">Trucking Management</a></h1>
@@ -34,25 +38,104 @@
       </li>
     </ul>-->
 
+
     <!-- Left Nav Section -->
     <ul class="left">
-      <li><a href="input">Input Data</a></li>
-      <li class="has-dropdown">
-        <a href="contacts">Contacts</a>
+      <!--<li class="has-dropdown">
+        <a href="#">Contacts</a>
+        
+
         <ul class="dropdown">
-          <li><a href="contacts/new">New Contact</a></li>
+          <li><a href="/contacts">All Contacts</a></li>
+          <li><a href="/contacts/new">New Contact</a></li>
         </ul>
+      </li>-->
+      <%if request.original_url.split("/")[3] == "drivers"%>      
+          <li class="active has-dropdown">
+      <%else%>
+          <li class="has-dropdown">
+      <%end%>
+
+      <a href="/drivers">Drivers</a>
+      
+
+      <ul class="dropdown">
+      <li><a href="/drivers">All Drivers</a></li>
+      <li><a href="/drivers/new">New Driver</a></li>
+      </ul>
+      </li>
+
+      <%if request.original_url.split("/")[3] == "trucks"%>      
+          <li class="active has-dropdown">
+      <%else%>
+          <li class="has-dropdown">
+      <%end%>
+      <a href="/trucks">Trucks</a>
+      <ul class="dropdown">
+      <li><a href="/trucks">All Trucks</a></li>
+      <li><a href="/trucks/new">New Truck</a></li>
+      </ul>
+      </li>
+
+      <%if request.original_url.split("/")[3] == "trailers"%>      
+          <li class="active has-dropdown">
+      <%else%>
+          <li class="has-dropdown">
+      <%end%>
+      <a href="/trailers">Trailers</a>
+      <ul class="dropdown">
+      <li><a href="/trailers">All Trailers</a></li>
+      <li><a href="/trailers/new">New Trailer</a></li>
+      </ul>
+      </li>
+
+      <%if request.original_url.split("/")[3] == "loads"%>      
+          <li class="active has-dropdown">
+      <%else%>
+          <li class="has-dropdown">
+      <%end%>
+      <a href="/loads">Loads</a>
+      <ul class="dropdown">
+      <li><a href="/loads">All Loads</a></li>
+      <li><a href="/loads/new">New Load</a></li>
+      </ul>
+      </li>
+
+      <%if request.original_url.split("/")[3] == "shippers"%>      
+          <li class="active has-dropdown">
+      <%else%>
+          <li class="has-dropdown">
+      <%end%>
+      <a href="/shippers">Shippers</a>
+      <ul class="dropdown">
+      <li><a href="/shippers">All Shippers</a></li>
+      <li><a href="/shippers/new">New Shipper</a></li>
+      </ul>
       </li>
     </ul>
   </section>
 </nav>
 
-<% if flash[:notice] %>
-<div id="notice"><%= flash[:notice] %></div>
-<%end%>
+<div class="row" style="background-color:#ccc">
+  <% flash.each do |name, msg| %>
+        <% if msg.is_a?(String) %>
+          <div data-alert class="alert-box <%= name.to_s == 'notice' ? 'success' : 'alert' %>">
+            <%= msg %>
+            <a href="#" class="close">&times;</a>
+          </div>
+        <% end %>
+      <% end %>
+  <div class="large-10 columns">
+  <script>
+    setTimeout(function(){$(".alert-box a.close").click();}, 1000);
+  </script>
+    
 
 
     <%= yield %>
     <%= javascript_include_tag "application" %>
+    </div>
+</div>
+
   </body>
 </html>

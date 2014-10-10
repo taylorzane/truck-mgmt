@@ -3,12 +3,12 @@ class ContactsController < ApplicationController
   before_action :get_contact, only: [:edit, :update, :destroy]
 
   def get_contact
-    @contact = Contact.find(params[:id])#.sort(:username)
+    @contact = Contact.find(params[:id])
   end
 
   def index
     @title = "All Contacts"
-    @contact = Contact.all
+    @contact = Contact.all.order(:username)
   end
 
   def show
@@ -31,10 +31,9 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
     #@contact.request = request
     if @contact.save
-      redirect_to(contacts_path, notice: "User was created successfully")
+      redirect_to(contacts_path, notice: 'User was created successfully')
     else
-      flash.now[:error] = 'Cannot create user.'
-      render action: 'new'
+      redirect_to(contacts_path, alert: 'Cannot create user.')
     end
   end
 

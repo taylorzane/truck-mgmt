@@ -1,0 +1,49 @@
+<% content_for :title do %>
+<%=@title%>
+<% end %>
+
+<h2><%=@title%></h2>
+
+<table>
+	<thead>
+		<tr>
+				<th>Nickname</th>
+				<th>Dimensions (LxWxH)</th>
+				<th>Weight</th>
+				<th>Trailer</th>
+				<th>Shipper</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+		<td><%= @load.nickname%></td>
+		<td><%=@load.length%> x <%=@load.width%> x <%=@load.height%></td>
+		<td><%=@load.weight%></td>
+		<td>
+			<% if @load.trailer != nil %>
+						<%if @load.trailer.nickname != (nil or '')%>
+      				<%=link_to @load.trailer.licnum, trailer_path(@load.trailer)%>  <%=' (' + @load.trailer.nickname+')'%>
+    				<%else%>
+      				<%=link_to @load.trailer.licnum, trailer_path(@load.trailer)%>
+    				<%end%>
+				<%else%>
+						<%= 'No Trailer' %>
+				<%end%>
+		</td>
+		<td>
+					<% if @load.shipper != nil %>
+      				<%=link_to @load.shipper.name, shipper_path(@load.shipper)%>
+					<%else%>
+						<%= 'No Shipper' %>
+					<%end%>
+				</td>
+		
+		</tr>	
+	</tbody>
+	
+
+
+</table>
+<%= link_to "Edit Load", edit_load_path(@load), class: 'button small' %>
+<a href="/loads" class="button small">All Loads</a>
